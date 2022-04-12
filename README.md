@@ -25,3 +25,24 @@ kivy_venv\Scripts\activate
 ```
 source kivy_venv/bin/activate
 ```
+
+#### 3. pip install
+```
+python -m pip install "kivy[base]" kivy_examples
+```
+위의 pip install에서 에러가 나타날 경우 ([참조1](https://kivy.org/doc/stable/gettingstarted/installation.html), [참조2](https://stackoverflow.com/questions/59125232/how-to-deal-with-kivy-installing-error-in-python-3-8))
+```
+python -m pip install docutils pygments pypiwin32 kivy_deps.sdl2==0.1.* kivy_deps.glew==0.1.*
+python -m pip install kivy_deps.gstreamer==0.1.*
+python -m pip install kivy_deps.angle==0.1.*
+python -m pip install "kivy[base] @ https://github.com/kivy/kivy/archive/master.zip"
+```
+
+#### 4. Optional(example demo)
+```
+python -m pip install kivy_examples==1.11.1
+```
+아래의 코드를 실행하면 데모프로그램(kivy로 제작할 수 있는 UI의 예)을 실행가능
+```
+python kivy_venv\share\kivy-examples\demo\showcase\main.py
+```
