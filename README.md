@@ -42,7 +42,70 @@ python -m pip install "kivy[base] @ https://github.com/kivy/kivy/archive/master.
 ```
 python -m pip install kivy_examples==1.11.1
 ```
-아래의 코드를 실행하면 데모프로그램(kivy로 제작할 수 있는 UI의 예)을 실행가능
+아래의 코드를 실행하면 데모프로그램(kivy로 제작할 수 있는 UI의 예)을 실행가능, 정상실행시 가상환경, kivy설치 완료
 ```
 python kivy_venv\share\kivy-examples\demo\showcase\main.py
 ```
+
+
+## Kivy Basics
+https://kivy.org/doc/stable/guide/basic.html
+
+### Basics: Hello World
+```
+import kivy
+# kivy.require('2.1.0') # replace with your current kivy version !
+
+from kivy.app import App
+from kivy.uix.label import Label
+
+
+class MyApp(App):
+
+    def build(self):
+        return Label(text='Hello world')
+
+
+if __name__ == '__main__':
+    MyApp().run()
+```
+
+### Login Screen
+```
+from kivy.app import App
+from kivy.uix.gridlayout import GridLayout
+from kivy.uix.label import Label
+from kivy.uix.textinput import TextInput
+
+
+class LoginScreen(GridLayout):
+
+    def __init__(self, **kwargs):
+        super(LoginScreen, self).__init__(**kwargs)
+        self.cols = 2
+        
+        # (1,1)
+        self.add_widget(Label(text='User Name'))
+        # (1,2)
+        self.username = TextInput(multiline=False)
+        self.add_widget(self.username)
+        
+        # (2,1)
+        self.add_widget(Label(text='password'))
+        # (2,2)
+        self.password = TextInput(password=True, multiline=False)
+        self.add_widget(self.password)
+
+
+class MyApp(App):
+
+    def build(self):
+        return LoginScreen()
+
+
+if __name__ == '__main__':
+    MyApp().run()
+```
+
+- `GridLayout`: 위젯 UI를 그리드(격자)형태로 나타낼 수 있게해주는 클래스
+- `add_widget`을 통해 왼쪽부터 차례로 위젯을 추가하는 형태
