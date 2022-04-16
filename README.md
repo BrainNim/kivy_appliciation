@@ -109,3 +109,29 @@ if __name__ == '__main__':
 
 - `GridLayout`: 위젯 UI를 그리드(격자)형태로 나타낼 수 있게해주는 클래스
 - `add_widget`을 통해 왼쪽부터 차례로 위젯을 추가하는 형태
+
+
+## 안드로이드 패키지 배포
+[공식문서](https://kivy.org/doc/stable/guide/packaging-android.html)
+
+#### WSL 설정
+```
+sudo apt install python3-pip
+sudp apt install unzip
+sudo apt install zlib1g-dev  # zlib1g로는 안되더라. 새로 설치해야함
+sudo apt install cython
+sudo apt -y install openjdk-8-jdk
+```
+
+아래와 같은 에러 발생
+```
+sdkmanager path "/home/olixao/.buildozer/android/platform/android-sdk/tools/bin/sdkmanager" does not exist, sdkmanager is notinstalled
+```
+
+해결
+```
+cd ~/.buildozer/android/platform/android-sdk
+curl -L -O -C - https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
+unzip sdk-tools-linux-4333796.zip
+```
+[에러슈팅 참고링크](https://github.com/kivy/buildozer/issues/927)
