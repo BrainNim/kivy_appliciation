@@ -135,3 +135,49 @@ curl -L -O -C - https://dl.google.com/android/repository/sdk-tools-linux-4333796
 unzip sdk-tools-linux-4333796.zip
 ```
 [에러슈팅 참고링크](https://github.com/kivy/buildozer/issues/927)
+
+
+그런데 이번엔 또 다른 에러 발생
+```
+# Search for Git (git)
+#  -> found at /usr/bin/git
+# Search for Cython (cython)
+#  -> found at /usr/bin/cython
+# Search for Java compiler (javac)
+#  -> found at /usr/lib/jvm/java-11-openjdk-amd64/bin/javac
+# Search for Java keytool (keytool)
+#  -> found at /usr/lib/jvm/java-11-openjdk-amd64/bin/keytool
+# Install platform
+# Run 'git config --get remote.origin.url'
+# Cwd /mnt/c/Users/user/Documents/Python Scripts/kivy_appliciation/.buildozer/android/platform/python-for-android
+https://github.com/kivy/python-for-android.git
+# Run 'git branch -vv'
+# Cwd /mnt/c/Users/user/Documents/Python Scripts/kivy_appliciation/.buildozer/android/platform/python-for-android
+* master 227a7658 [origin/master] Merge pull request #2561 from misl6/release-2022.03.13
+# Run '/usr/bin/python3 -m pip install -q --user \'appdirs\' \'colorama>=0.3.3\' \'jinja2\' \'six\' \'enum34; python_version<"3.4"\' \'sh>=1.10; sys_platform!="nt"\' \'pep517<0.7.0\' \'to
+ml\''
+# Cwd None
+# Apache ANT found at /home/lee_ubuntu/.buildozer/android/platform/apache-ant-1.9.4
+# Android SDK found at /home/lee_ubuntu/.buildozer/android/platform/android-sdk
+# Recommended android's NDK version by p4a is: 19c
+# Android NDK found at /home/lee_ubuntu/.buildozer/android/platform/android-ndk-r19c
+# Installing/updating SDK platform tools if necessary
+# Run '/home/lee_ubuntu/.buildozer/android/platform/android-sdk/tools/bin/sdkmanager --sdk_root=/home/lee_ubuntu/.buildozer/android/platform/android-sdk platform-tools'
+# Cwd /home/lee_ubuntu/.buildozer/android/platform/android-sdk
+Exception in thread "main" java.lang.NoClassDefFoundError: javax/xml/bind/annotation/XmlSchema
+        at com.android.repository.api.SchemaModule$SchemaModuleVersion.<init>(SchemaModule.java:156)
+        at com.android.repository.api.SchemaModule.<init>(SchemaModule.java:75)
+        at com.android.sdklib.repository.AndroidSdkHandler.<clinit>(AndroidSdkHandler.java:81)
+        at com.android.sdklib.tool.sdkmanager.SdkManagerCli.main(SdkManagerCli.java:73)
+        at com.android.sdklib.tool.sdkmanager.SdkManagerCli.main(SdkManagerCli.java:48)
+Caused by: java.lang.ClassNotFoundException: javax.xml.bind.annotation.XmlSchema
+        at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:581)
+        at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:178)
+        at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:522)
+        ... 5 more
+# Command failed: /home/lee_ubuntu/.buildozer/android/platform/android-sdk/tools/bin/sdkmanager --sdk_root=/home/lee_ubuntu/.buildozer/android/platform/android-sdk platform-tools
+```
+
+이건 java버전으로 인한 문제
+[에러슈팅 참고링크](https://github.com/kivy/buildozer/issues/1425)
+난 java 11버전이 돌아가고 있었는데, javac-8, javac-15로 바꿔줘야한다고 한다.
