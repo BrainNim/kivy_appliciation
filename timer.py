@@ -2,7 +2,7 @@ from kivy.app import App
 from kivy.clock import Clock
 from datetime import datetime
 
-from sound import Play
+# from sound import Play
 
 class Alarm(App):
     def __init__(self, alarm_time, **kwargs):
@@ -28,4 +28,4 @@ class Alarm(App):
     # print alarm
     def alarm(self):
         print("Alarm!")
-        Play().beep()
+        # Play().beep()
